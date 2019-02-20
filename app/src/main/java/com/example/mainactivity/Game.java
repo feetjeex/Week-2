@@ -137,22 +137,29 @@ public class Game implements Serializable {
             }
         }
 
+        // If 9 or more moves have been played, returns that the game ended in a draw
         else if (counter >= 9) {
             return GameState.DRAW;
 
         }
 
+        // Default return value if neither player has won and the game has not ended in a draw
         else {
             return GameState.IN_PROGRESS;
         }
 
     }
 
-
+    // Method to fill in the tiles after the user taps on them
     public TileState choose(int row, int column) {
 
+        // Checks if the tile is BLANK
         if (this.getTileState(row, column) == TileState.BLANK) {
+
+            // Checks whose turn it is
             if (playerOneTurn) {
+
+                // Fills in the blank, and switches turns to the other player
                 this.board[row][column] = TileState.CIRCLE;
                 playerOneTurn = false;
                 return TileState.CIRCLE;
